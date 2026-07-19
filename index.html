@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Independent Bookstore Events</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="logo">
+                <i class="fa-solid fa-book" aria-hidden="true"></i>
+                <h2>BookStore</h2>
+            </div>
+
+            <nav aria-label="Main navigation">
+
+                <a href="#" class="active" aria-current="page">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    Dashboard
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                    Events
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                    Categories
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                    Settings
+                </a>
+
+            </nav>
+
+        </div>
+
+        <div class="logout">
+
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Independent Bookstore Events</h2>
+                <small>Admin Dashboard</small>
+            </div>
+
+            <div class="profile">
+                <i class="fa-regular fa-bell" role="button" tabindex="0" aria-label="Notifications"></i>
+                <div class="avatar" aria-label="User: Maria S.">MS</div>
+            </div>
+
+        </header>
+
+        <section class="welcome">
+            <h1>Welcome Back 👋</h1>
+            <p>Manage and organize bookstore events from one unified dashboard.</p>
+        </section>
+
+        <section class="search-area" aria-label="Search and filter events">
+
+            <label for="searchInput" class="sr-only">Search events</label>
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search events..."
+                aria-label="Search events by title">
+
+            <label for="categoryFilter" class="sr-only">Filter by category</label>
+            <select id="categoryFilter" aria-label="Filter events by category">
+                <option>All Categories</option>
+                <option>Book Launch</option>
+                <option>Reading Session</option>
+                <option>Workshop</option>
+                <option>Kids</option>
+            </select>
+
+            <button type="button" id="addEventBtn" aria-haspopup="dialog">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                Add Event
+            </button>
+
+        </section>
+
+        <section class="stats" aria-label="Event statistics">
+
+            <div class="stat-card">
+                <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                <h3>24</h3>
+                <p>Total Events</p>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-star" aria-hidden="true"></i>
+                <h3>18</h3>
+                <p>Upcoming</p>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                <h3>6</h3>
+                <p>Completed</p>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-book" aria-hidden="true"></i>
+                <h3>5</h3>
+                <p>Categories</p>
+            </div>
+
+        </section>
+
+        <section class="events">
+
+            <h2 class="section-title">Upcoming Events</h2>
+
+            <!-- Loading indicator: shown during simulated async filtering -->
+            <div id="loadingIndicator" class="loading-indicator" style="display:none;" aria-live="polite">
+                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                Loading events...
+            </div>
+
+            <div class="event-grid" id="eventGrid">
+
+                <div class="event-card" data-category="Book Launch">
+                    <span class="badge">Book Launch</span>
+                    <h3>The Silent Forest</h3>
+                    <p><i class="fa-solid fa-user" aria-hidden="true"></i> Sarah Johnson</p>
+                    <p><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> 24 July 2026</p>
+                    <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Downtown Bookstore</p>
+                    <p><i class="fa-solid fa-chair" aria-hidden="true"></i> 40 Seats</p>
+                    <button type="button" class="view-details-btn">View Details</button>
+                </div>
+
+                <div class="event-card" data-category="Reading Session">
+                    <span class="badge">Reading Session</span>
+                    <h3>Poetry Evening</h3>
+                    <p><i class="fa-solid fa-user" aria-hidden="true"></i> Emily Carter</p>
+                    <p><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> 28 July 2026</p>
+                    <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> City Library</p>
+                    <p><i class="fa-solid fa-chair" aria-hidden="true"></i> 25 Seats</p>
+                    <button type="button" class="view-details-btn">View Details</button>
+                </div>
+
+            </div>
+
+            <div id="emptyState" class="empty-state" style="display:none;" aria-live="polite">
+                <h2>📚 No Events Found</h2>
+                <p>Try changing your search or category.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Add Event Modal -->
+    <div id="addEventModal" class="modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+
+            <h2 id="modalTitle">Add New Event</h2>
+
+            <form id="addEventForm" novalidate>
+
+                <div class="form-group">
+                    <label for="eventTitle">Event Title</label>
+                    <input type="text" id="eventTitle" name="eventTitle" required aria-required="true">
+                    <span class="error-message" id="eventTitleError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventAuthor">Author / Host</label>
+                    <input type="text" id="eventAuthor" name="eventAuthor" required aria-required="true">
+                    <span class="error-message" id="eventAuthorError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDate">Date</label>
+                    <input type="date" id="eventDate" name="eventDate" required aria-required="true">
+                    <span class="error-message" id="eventDateError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventLocation">Location</label>
+                    <input type="text" id="eventLocation" name="eventLocation" required aria-required="true">
+                    <span class="error-message" id="eventLocationError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventSeats">Seats</label>
+                    <input type="number" id="eventSeats" name="eventSeats" min="1" required aria-required="true">
+                    <span class="error-message" id="eventSeatsError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventCategory">Category</label>
+                    <select id="eventCategory" name="eventCategory" required aria-required="true">
+                        <option value="">Select a category</option>
+                        <option>Book Launch</option>
+                        <option>Reading Session</option>
+                        <option>Workshop</option>
+                        <option>Kids</option>
+                    </select>
+                    <span class="error-message" id="eventCategoryError" role="alert"></span>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelAddEvent">Cancel</button>
+                    <button type="submit">Add Event</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
